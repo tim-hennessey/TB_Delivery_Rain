@@ -17,12 +17,28 @@ body {
     opacity:0;
 
     .dot{
-        width:4px;
-        height:4px;
-        border-radius: 2px;
-        background: #FFF;
-        //transform: translate3d(0, 0, 0.1px);
+        width:1px;
+        height:100px;
+        border-radius: 50%;
+        background: #7c6bb6;
         position:absolute;
+    }
+
+    .dot2{
+        width:12px;
+        height:3px;
+        border-radius: 50%;
+        border: 1px solid #7c6bb6;
+        //background: #7c6bb6;
+        position:absolute;
+    }
+
+    #ripples {
+        width:250px;
+        height:20px;
+        left: 0;
+        bottom: 35px;
+        position: absolute;
     }
 
     #city {

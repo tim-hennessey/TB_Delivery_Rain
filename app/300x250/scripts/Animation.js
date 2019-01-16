@@ -62,24 +62,44 @@ app.Animation = (function () {
     // Starts the animation
     function start() {
 
-        var total = 1000;
+        var total = 300;
         var container = document.getElementById("container"), w = window.innerWidth, h = window.innerHeight;
 
         for (var i = 0; i < total; i++) {
             var Div = document.createElement('div');
             t.set(Div, {
                 attr: {class: 'dot'},
-                x: R(-100, w),
-                y: R(-100, -50),
-                opacity: R(.25, 1)
+                x: R(0, w),
+                y: R(-100, -150),
+                scaleY: R(.01, 1),
+                opacity: R(.25, .75)
             });
             container.appendChild(Div);
             animm(Div);
         }
 
         function animm(elm) {
-            t.to(elm, R(16, 18), {y: h - 50, ease: Linear.easeNone, repeat: -1, delay: -150});
-            t.to(elm, R(16, 18), {x: '+=50', repeat: -1, yoyo: true, ease: Sine.easeInOut});
+            t.to(elm, R(1, 2), {y: h - 50, ease: Linear.easeNone, repeat: -1, delay: -5});
+            // t.to(elm, R(16, 18), {x: '+=50', repeat: -1, yoyo: true, ease: Sine.easeInOut});
+        }
+
+        var total2 = 10;
+        var ripples = document.getElementById("ripples"), w2 = 250, h2 = 20;
+
+        for (var i2 = 0; i2 < total2; i2++) {
+            var Div2 = document.createElement('div2');
+            t.set(Div2, {
+                attr: {class: 'dot2'},
+                x: R(-10, w2),
+                y: R(5, h2),
+                scale: R(.25, 1)
+            });
+            ripples.appendChild(Div2);
+            animm2(Div2);
+        }
+
+        function animm2(elm2) {
+            t.to(elm2, R(.25, .75), {scale:1.5, opacity:0, ease: Sine.easeOut, repeat: -1, delay: -2});
         }
 
         function R(min, max) {
