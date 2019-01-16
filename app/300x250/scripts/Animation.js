@@ -4,11 +4,17 @@ var app = app || {};
 app.Animation = (function () {
 
     var t = TweenMax;
-    var tl1 = new TimelineMax({repeat:-1, paused: true});
-    var tl2 = new TimelineMax({repeat:-1, paused: true});
-    var tl3 = new TimelineMax({repeat:-1, paused: true});
-    var tl4 = new TimelineMax({repeat:-1, paused: true});
-    var tl5 = new TimelineMax({repeat:-1, paused: true});
+    var tl1 = new TimelineMax({repeat: -1, paused: true});
+    var tl2 = new TimelineMax({repeat: -1, paused: true});
+    var tl3 = new TimelineMax({repeat: -1, paused: true});
+    var tl4 = new TimelineMax({repeat: -1, paused: true});
+    var tl5 = new TimelineMax({repeat: -1, paused: true});
+
+    var pintl1 = new TimelineMax();
+    var pintl2 = new TimelineMax();
+    var pintl3 = new TimelineMax();
+    var pintl4 = new TimelineMax();
+    var pintl5 = new TimelineMax();
 
     var tltxt = new TimelineMax();
 
@@ -31,14 +37,14 @@ app.Animation = (function () {
     function initialize() {
 
 
-
         t.set(banner, {opacity: 1});
         t.set("#container", {perspective: 600});
-        t.set(pin1, {transformOrigin: "50% 100%"});
-        t.set(pin2, {transformOrigin: "50% 100%"});
-        t.set(pin3, {transformOrigin: "50% 100%"});
-        t.set(pin4, {transformOrigin: "50% 100%"});
-        t.set(pin5, {transformOrigin: "50% 100%"});
+        t.set(pin1, {y:"-=10", transformOrigin: "50% 100%"});
+        t.set(pin2, {y:"-=10", transformOrigin: "50% 100%"});
+        t.set(pin3, {y:"-=10", transformOrigin: "50% 100%"});
+        t.set(pin4, {y:"-=10", transformOrigin: "50% 100%"});
+        t.set(pin5, {y:"-=10", transformOrigin: "50% 100%"});
+        // t.set(cta, {y:"-=10", transformOrigin: "50% 100%"});
 
         buttonExit.addEventListener('mouseover', function () {
             t.to(cta_bg, .25, {backgroundColor: "rgba(211, 78, 255, 1)"});
@@ -50,23 +56,21 @@ app.Animation = (function () {
         });
 
 
-
     }
 
     // --------------------------------------------------------------------------------------
     // Starts the animation
     function start() {
 
-        var total = 650;
+        var total = 1000;
         var container = document.getElementById("container"), w = window.innerWidth, h = window.innerHeight;
 
         for (var i = 0; i < total; i++) {
             var Div = document.createElement('div');
             t.set(Div, {
                 attr: {class: 'dot'},
-                x: R(-50, w + 50),
-                y: R(-200, -150),
-                z: R(-100, 100),
+                x: R(-100, w),
+                y: R(-100, -50),
                 opacity: R(.25, 1)
             });
             container.appendChild(Div);
@@ -74,76 +78,75 @@ app.Animation = (function () {
         }
 
         function animm(elm) {
-            t.to(elm, R(5, 6.5), {y: h, ease: Linear.easeNone, repeat: -1, delay: -15});
-            t.to(elm, R(5, 7), {x: '+=100', repeat: -1, yoyo: true, ease: Sine.easeInOut});
+            t.to(elm, R(16, 18), {y: h - 50, ease: Linear.easeNone, repeat: -1, delay: -150});
+            t.to(elm, R(16, 18), {x: '+=50', repeat: -1, yoyo: true, ease: Sine.easeInOut});
         }
 
         function R(min, max) {
             return min + Math.random() * (max - min)
         }
 
+        pintl1.from(pin1, .25, {scale:"-=.2", opacity:0, ease: Sine.easeInOut}, "+=3.5")
+            .to(pin1, .25, {y:"+=10", ease: Sine.easeIn}, "+=.2")
+            .to(pin1, .25, {y:"-=5", ease: Sine.easeOut})
+            .to(pin1, .25, {y:"+=5", ease: Sine.easeIn})
+            .to(pin1, 1, {y: "-=5", ease: Sine.easeOut, onComplete: function () {tl1.play()}});
 
-        t.from(pin1, .6, {y:"-=200",  ease: Sine.easeIn, onComplete:tl1go, delay:2.1});
-        function tl1go() {
-            tl1.play();
-        }
+        pintl2.from(pin2, .25, {scale:"-=.2", opacity:0, ease: Sine.easeInOut}, "+=3.6")
+            .to(pin2, .25, {y:"+=10", ease: Sine.easeIn}, "+=.2")
+            .to(pin2, .25, {y:"-=5", ease: Sine.easeOut})
+            .to(pin2, .25, {y:"+=5", ease: Sine.easeIn})
+            .to(pin2, 1, {y: "-=5", ease: Sine.easeOut, onComplete: function () {tl2.play()}});
 
-        t.from(pin2, .6, {y:"-=200",  ease: Sine.easeIn, onComplete:tl2go, delay:2.2});
-        function tl2go() {
-            tl2.play();
-        }
+        pintl3.from(pin3, .25, {scale:"-=.2", opacity:0, ease: Sine.easeInOut}, "+=3.7")
+            .to(pin3, .25, {y:"+=10", ease: Sine.easeIn}, "+=.2")
+            .to(pin3, .25, {y:"-=5", ease: Sine.easeOut})
+            .to(pin3, .25, {y:"+=5", ease: Sine.easeIn})
+            .to(pin3, 1, {y: "-=5", ease: Sine.easeOut, onComplete: function () {tl3.play()}});
 
-        t.from(pin3, .6, {y:"-=200",  ease: Sine.easeIn, onComplete:tl3go, delay:2.3});
-        function tl3go() {
-            tl3.play();
-        }
+        pintl4.from(pin4, .25, {scale:"-=.2", opacity:0, ease: Sine.easeInOut}, "+=3.8")
+            .to(pin4, .25, {y:"+=10", ease: Sine.easeIn}, "+=.2")
+            .to(pin4, .25, {y:"-=5", ease: Sine.easeOut})
+            .to(pin4, .25, {y:"+=5", ease: Sine.easeIn})
+            .to(pin4, 1, {y: "-=5", ease: Sine.easeOut, onComplete: function () {tl4.play()}});
 
-        t.from(pin4, .6, {y:"-=200",  ease: Sine.easeIn, onComplete:tl4go, delay:2.4});
-        function tl4go() {
-            tl4.play();
-        }
-
-        t.from(pin5, .6, {y:"-=200",  ease: Sine.easeIn, onComplete:tl5go, delay:2.5});
-        function tl5go() {
-            tl5.play();
-        }
-
-        tltxt.to(txt1, .5, {opacity:1}, "+=.5")
-            .from(txt1, .5, {scale:.8}, "-=.5")
-
-            .to(txt2, .5, {opacity:1}, "+=1")
-            .from(txt2, .5, {scale:.8}, "-=.5")
-
-            .to(txt3, .25, {opacity:1}, "+=1")
-            .from(txt3, .25, {scale:.8}, "-=.25")
-
-            .to(cta, .25, {opacity:1}, "+=.5");
+        pintl5.from(pin5, .25, {scale:"-=.2", opacity:0, ease: Sine.easeInOut}, "+=3.9")
+            .to(pin5, .25, {y:"+=10", ease: Sine.easeIn}, "+=.2")
+            .to(pin5, .25, {y:"-=5", ease: Sine.easeOut})
+            .to(pin5, .25, {y:"+=5", ease: Sine.easeIn})
+            .to(pin5, 1, {y: "-=5", ease: Sine.easeOut, onComplete: function () {tl5.play()}});
 
 
-        tl1.to(pin1, .35, {scaleX: '-=.1', scaleY:"+=.1", ease: Sine.easeInOut}, "+=.1")
-            .to(pin1, .35, {y:'-=10',  ease: Sine.easeInOut}, "-=.2")
-            .to(pin1, .35, {y:'+=10',  ease: Sine.easeInOut}, "+=.15")
-            .to(pin1, .2, {scaleX: '+=.1', scaleY:"-=.1", ease: Sine.easeInOut}, "-=.2");
 
-        tl2.to(pin2, .35, {scaleX: '-=.1', scaleY:"+=.1", ease: Sine.easeInOut}, "+=.1")
-            .to(pin2, .35, {y:'-=10',  ease: Sine.easeInOut}, "-=.2")
-            .to(pin2, .35, {y:'+=10',  ease: Sine.easeInOut}, "+=.15")
-            .to(pin2, .2, {scaleX: '+=.1', scaleY:"-=.1", ease: Sine.easeInOut}, "-=.2");
+        tltxt.to(txt1, .25, {opacity: 1}, "+=.75")
+            .fromTo(txt1, .25, {y: "-=20"}, {y: "+=23", ease: Sine.easeOut}, "-=.25")
+            .to(txt1, .1, {y: "-=3", ease: Sine.easeInOut})
 
-        tl3.to(pin3, .35, {scaleX: '-=.1', scaleY:"+=.1", ease: Sine.easeInOut}, "+=.1")
-            .to(pin3, .35, {y:'-=10',  ease: Sine.easeInOut}, "-=.2")
-            .to(pin3, .35, {y:'+=10',  ease: Sine.easeInOut}, "+=.15")
-            .to(pin3, .2, {scaleX: '+=.1', scaleY:"-=.1", ease: Sine.easeInOut}, "-=.2");
+            .to(txt2, .25, {opacity: 1}, "+=1.25")
+            .fromTo(txt2, .25, {y: "-=20"}, {y: "+=23", ease: Sine.easeOut}, "-=.25")
+            .to(txt2, .1, {y: "-=3", ease: Sine.easeInOut})
 
-        tl4.to(pin4, .35, {scaleX: '-=.1', scaleY:"+=.1", ease: Sine.easeInOut}, "+=.1")
-            .to(pin4, .35, {y:'-=10',  ease: Sine.easeInOut}, "-=.2")
-            .to(pin4, .35, {y:'+=10',  ease: Sine.easeInOut}, "+=.15")
-            .to(pin4, .2, {scaleX: '+=.1', scaleY:"-=.1", ease: Sine.easeInOut}, "-=.2");
+            .to(txt3, .25, {opacity: 1}, "+=1")
 
-        tl5.to(pin5, .35, {scaleX: '-=.1', scaleY:"+=.1", ease: Sine.easeInOut}, "+=.1")
-            .to(pin5, .35, {y:'-=10',  ease: Sine.easeInOut}, "-=.2")
-            .to(pin5, .35, {y:'+=10',  ease: Sine.easeInOut}, "+=.15")
-            .to(pin5, .2, {scaleX: '+=.1', scaleY:"-=.1", ease: Sine.easeInOut}, "-=.2");
+            .to(cta, .25, {opacity: 1}, "+=1.5")
+            .fromTo(cta, .25, {y: "-=20"}, {y: "+=23", ease: Sine.easeOut}, "-=.25")
+            .to(cta, .2, {y: "-=3", ease: Sine.easeInOut});
+
+
+        tl1.to(pin1, 1, {y: '+=5', ease: Sine.easeInOut})
+            .to(pin1, 1, {y: '-=5', ease: Sine.easeInOut});
+
+        tl2.to(pin2, 1, {y: '+=5', ease: Sine.easeInOut})
+            .to(pin2, 1, {y: '-=5', ease: Sine.easeInOut});
+
+        tl3.to(pin3, 1, {y: '+=5', ease: Sine.easeInOut})
+            .to(pin3, 1, {y: '-=5', ease: Sine.easeInOut});
+
+        tl4.to(pin4, 1, {y: '+=5', ease: Sine.easeInOut})
+            .to(pin4, 1, {y: '-=5', ease: Sine.easeInOut});
+
+        tl5.to(pin5, 1, {y: '+=5', ease: Sine.easeInOut})
+            .to(pin5, 1, {y: '-=5', ease: Sine.easeInOut});
 
 
     }
