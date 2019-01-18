@@ -148,7 +148,7 @@ app.Animation = (function () {
 
             .to(txt3, .25, {opacity: 1}, "+=1")
 
-            .to(cta, .25, {opacity: 1}, "+=1.5")
+            .to(cta, .25, {opacity: 1}, "+=.75")
             .fromTo(cta, .25, {y: "-=20"}, {y: "+=23", ease: Sine.easeOut}, "-=.25")
             .to(cta, .2, {y: "-=3", ease: Sine.easeInOut});
 
